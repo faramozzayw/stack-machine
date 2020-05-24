@@ -1,30 +1,37 @@
-import React from 'react'
-import { Form, Input, Dropdown, Segment, Header } from 'semantic-ui-react'
+import React from "react";
+import {
+  Field,
+  FieldBody,
+  Label,
+  Control,
+  Title,
+  Select,
+  Button,
+  Input,
+} from "bloomer";
 
 import options from "./expressionConfig.json";
 
+import "./ExpressionInput.css";
+
 const ExpressionInput = () => (
-	<Segment style={{
-		marginTop: "1rem"
-	}} basic>
-		<Header>Expression Input</Header>
-		<Form>
-			<Form.Field required>
-				<Input
-					label={
-						<Dropdown placeholder="Actions" options={options} />
-					}
-					labelPosition="left"
-					placeholder="Value"
-					action={{
-						content: "Commit",
-						color: "green",
-						basic: true,
-					}}
-				/>
-			</Form.Field>
-		</Form>
-	</Segment>
-)
+  <>
+    <Title>Expression Input</Title>
+    <form className="ExpressionInput">
+      <Field>
+        <Control>
+          <Select>
+            <option>push</option>
+            <option>pop</option>
+            <option>add</option>
+            <option>mult</option>
+          </Select>
+          <Input type="text" required />
+          <Button type="button">Commit!</Button>
+        </Control>
+      </Field>
+    </form>
+  </>
+);
 
 export default ExpressionInput;

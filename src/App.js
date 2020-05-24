@@ -1,34 +1,44 @@
 import React from "react";
-import "./App.css";
 
-import { Container, Grid, Header, Segment } from "semantic-ui-react";
+import {
+  ExpressionInput,
+  /* Navbar, */ StackMachine,
+  InputView,
+} from "./components";
 
-import { ExpressionInput, Navbar, StackMachine, InputView } from "./components";
+import {
+  Hero,
+  HeroHeader,
+  HeroBody,
+  Container,
+  Title,
+  Columns,
+  Column,
+} from "bloomer";
 
 const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <Container fluid>
-        <Grid columns={1} divided inverted>
-          <Grid.Row centered>
-            <ExpressionInput />
-          </Grid.Row>
-        </Grid>
-        <Segment basic>
-          <Grid columns={2} divided>
-            <Grid.Row>
-              <Grid.Column>
-                <StackMachine />
-              </Grid.Column>
-              <Grid.Column>
-                <InputView />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
-      </Container>
-    </div>
+    <Hero isColor="dark" isSize="medium" isFullHeight>
+      <HeroHeader>
+        <Title tag="h1" isSize={3}>
+          StackMachine!
+        </Title>
+      </HeroHeader>
+
+      <HeroBody>
+        <Container hasTextAlign="centered">
+          <ExpressionInput />
+          <Columns>
+            <Column>
+              <StackMachine />
+            </Column>
+            <Column>
+              <InputView />
+            </Column>
+          </Columns>
+        </Container>
+      </HeroBody>
+    </Hero>
   );
 };
 

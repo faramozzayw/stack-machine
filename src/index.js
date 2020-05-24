@@ -4,19 +4,19 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import "./index.css";
-import "semantic-ui-css/semantic.min.css";
+import "bulma/css/bulma.css";
 
 import * as serviceWorker from "./serviceWorker";
 
 import { StoreContext } from "storeon/react";
 
 ReactDOM.render(
-	<StoreContext.Provider value={null}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-	</StoreContext.Provider>,
-	document.getElementById("root")
+  <StoreContext.Provider value={null}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </StoreContext.Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

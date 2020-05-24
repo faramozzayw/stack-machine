@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Container, Grid, Header, Segment } from "semantic-ui-react";
+import { Title } from "bloomer";
 
 const InputView = () => {
   return (
-    <Segment basic>
-      <Header as="h3">Input View</Header>
-    </Segment>
+    <>
+      <Title tag="h3">Input View</Title>
+    </>
   );
 };
 

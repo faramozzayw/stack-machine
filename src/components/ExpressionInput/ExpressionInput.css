@@ -1,0 +1,7 @@
+.ExpressionInput .control {
+  display: flex;
+}
+
+.ExpressionInput .control * {
+  border-radius: 0px;
+}

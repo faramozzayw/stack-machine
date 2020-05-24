@@ -2,8 +2,6 @@ import React from "react";
 
 import "./StackBox.css";
 
-const StackBox = ({ children }) => (
-  <article className="StackBox">{children}</article>
-);
+const StackBox = ({ children }) => <li className="stack-item">{children}</li>;
 
 export default StackBox;

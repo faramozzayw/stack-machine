@@ -1,0 +1,20 @@
+.stack .stack-item {
+  --stack-border: 5px;
+  --stack-solid-border: var(--stack-border) solid firebrick;
+  --stack-dashed-border: var(--stack-border) dashed firebrick;
+
+  border-right: var(--stack-solid-border);
+  border-left: var(--stack-solid-border);
+}
+
+.stack .stack-item:first-child {
+  border-top: var(--stack-solid-border);
+}
+
+.stack .stack-item:not(:last-child) {
+  border-bottom: var(--stack-dashed-border);
+}
+
+.stack .stack-item:last-child {
+  border-bottom: var(--stack-solid-border);
+}

@@ -8,6 +8,8 @@ import {
   Select,
   Button,
   Input,
+  Container,
+  Box,
 } from "bloomer";
 
 import options from "./expressionConfig.json";
@@ -15,9 +17,9 @@ import options from "./expressionConfig.json";
 import "./ExpressionInput.css";
 
 const ExpressionInput = () => (
-  <>
+  <Container className="ExpressionInput">
     <Title>Expression Input</Title>
-    <form className="ExpressionInput">
+    <form>
       <Field>
         <Control>
           <Select>
@@ -27,11 +29,13 @@ const ExpressionInput = () => (
             <option>mult</option>
           </Select>
           <Input type="text" required />
-          <Button type="button">Commit!</Button>
+          <Button type="submit" isColor="success">
+            Commit!
+          </Button>
         </Control>
       </Field>
     </form>
-  </>
+  </Container>
 );
 
 export default ExpressionInput;

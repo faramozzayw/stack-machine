@@ -2,7 +2,8 @@ import React from "react";
 
 import {
   ExpressionInput,
-  /* Navbar, */ StackMachine,
+  MainTitle,
+  StackMachine,
   InputView,
 } from "./components";
 
@@ -18,12 +19,8 @@ import {
 
 const App = () => {
   return (
-    <Hero isColor="dark" isSize="medium" isFullHeight>
-      <HeroHeader>
-        <Title tag="h1" isSize={3}>
-          StackMachine!
-        </Title>
-      </HeroHeader>
+    <Hero isColor="dark" isSize="small" isFullHeight>
+      <MainTitle />
 
       <HeroBody>
         <Container hasTextAlign="centered">

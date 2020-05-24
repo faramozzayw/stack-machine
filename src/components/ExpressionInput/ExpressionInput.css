@@ -30,3 +30,19 @@
   border-bottom-left-radius: 0 !important;
   border-top-left-radius: 0 !important;
 }
+
+@media screen and (max-width: 450px) {
+  .ExpressionInput .control {
+    flex-flow: column;
+  }
+
+  .ExpressionInput select {
+    width: 100%;
+  }
+
+  .ExpressionInput button,
+  .ExpressionInput select,
+  .ExpressionInput input {
+    border-radius: 0 !important;
+  }
+}

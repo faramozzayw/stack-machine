@@ -1,6 +1,6 @@
 .stack {
   /* forestgreen, darkgoldenrod  */
-  --stack-border-color: darkgoldenrod;
+  --stack-border-color: yellowgreen;
   --stack-border: 5px;
   --stack-solid-border: var(--stack-border) solid var(--stack-border-color);
   --stack-dashed-border: var(--stack-border) dashed var(--stack-border-color);
@@ -32,6 +32,13 @@
 
 .stack .stack-item:first-child {
   border-top: var(--stack-solid-border);
+}
+
+.stack .stack-item:first-child::after {
+  color: #49ac25;
+  content: "<-- top";
+  padding-left: 7rem;
+  position: absolute;
 }
 
 .stack .stack-item:not(:last-child) {

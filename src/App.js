@@ -7,15 +7,7 @@ import {
   InputView,
 } from "./components";
 
-import {
-  Hero,
-  HeroHeader,
-  HeroBody,
-  Container,
-  Title,
-  Columns,
-  Column,
-} from "bloomer";
+import { Hero, HeroBody, Container, Columns, Column } from "bloomer";
 
 const App = () => {
   return (

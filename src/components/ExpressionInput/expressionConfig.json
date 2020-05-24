@@ -1,17 +1,22 @@
 [
   {
-  	"key": "push",
-  	"text": "push",
-  	"value": "push"
+    "text": "push",
+    "arg": true
   },
   {
-  	"key": "mult",
-  	"text": "mult",
-  	"value": "mult"
+    "text": "add",
+    "arg": false
   },
   {
-  	"key": "div",
-  	"text": "div",
-  	"value": "div"
+    "text": "subtract",
+    "arg": false
+  },
+  {
+    "text": "multiply",
+    "arg": false
+  },
+  {
+    "text": "divide",
+    "arg": false
   }
 ]

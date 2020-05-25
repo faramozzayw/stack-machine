@@ -12,6 +12,10 @@ const expression = store => {
 		instructionsList: state.instructionsList.concat(instruction),
 	}));
 
+	store.on(addInstruction, state => {
+		global.state = state;
+	});
+
 	store.on(clearInstructions, () => ({
 		...initialState,
 	}));

@@ -1,28 +1,28 @@
 const operations = new Map();
 
 operations.set("push", {
-  text: "push",
-  arg: true,
+	text: "push",
+	arg: true,
 });
 
 operations.set("add", {
-  text: "add",
-  arg: false,
+	text: "add",
+	arg: false,
 });
 
 operations.set("subtract", {
-  text: "subtract",
-  arg: false,
+	text: "subtract",
+	arg: false,
 });
 
 operations.set("multiply", {
-  text: "multiply",
-  arg: false,
+	text: "multiply",
+	arg: false,
 });
 
 operations.set("divide", {
-  text: "divide",
-  arg: false,
+	text: "divide",
+	arg: false,
 });
 
 export { operations };

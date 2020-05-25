@@ -11,29 +11,29 @@ import {
 
 import { useStoreon } from "storeon/react";
 
-import options from "./expressionConfig.json";
-
 import { operations } from "./operations";
 
 import { addInstruction } from "./../../store/instructionsState/actions";
 
+import { checkArg } from "./utils";
+
 import "./ExpressionInput.css";
 
-const checkArg = operations => currentOperation => {
-	return operations.get(currentOperation)?.arg;
-};
+const checkArgCurrOperation = checkArg(operations);
 
 const ExpressionInput = () => {
-	const [currentOperation, updateOperaion] = useState(options[0]?.text);
+	const [currentOperation, updateOperaion] = useState(() => {
+		return operations.values().next().value.text;
+	});
 	const [arg, updateArg] = useState("");
-	const [hasArg, updateArgStatus] = useState(
-		checkArg(operations)(currentOperation),
-	);
+	const [hasArg, updateArgStatus] = useState(() => {
+		return checkArgCurrOperation(currentOperation);
+	});
 
 	const { dispatch } = useStoreon();
 
 	useEffect(() => {
-		updateArgStatus(checkArg(operations)(currentOperation));
+		updateArgStatus(checkArgCurrOperation(currentOperation));
 	}, [currentOperation]);
 
 	const handleInput = event => {
@@ -65,7 +65,7 @@ const ExpressionInput = () => {
 							value={currentOperation}
 							onChange={event => updateOperaion(event.target.value)}
 						>
-							{options.map(({ text }) => (
+							{[...operations.values()].map(({ text }) => (
 								<option value={text} key={text}>
 									{text}
 								</option>

@@ -2,7 +2,7 @@ import { addInstruction, clearInstructions } from "./actions";
 
 import { initialState } from "./data";
 
-let expression = store => {
+const expression = store => {
 	store.on("@init", () => ({
 		...initialState,
 	}));

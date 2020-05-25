@@ -1,48 +1,53 @@
 .ExpressionInput {
-  padding: 1.25rem;
-  background-color: #403e3e;
-  border-radius: 1rem;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-    0 0px 0 1px rgba(10, 10, 10, 0.02);
-  margin-bottom: 1.5rem !important;
+	padding: 1.25rem;
+	background-color: #403e3e;
+	border-radius: 1rem;
+	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+		0 0px 0 1px rgba(10, 10, 10, 0.02);
+	margin-bottom: 1.5rem !important;
 }
 
 .ExpressionInput .field {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .ExpressionInput .control {
-  display: flex;
-  width: max-content;
+	display: flex;
+	width: max-content;
 }
 
 .ExpressionInput input {
-  border-radius: 0px;
+	border-radius: 0px;
+}
+
+.ExpressionInput input:disabled {
+	text-decoration: line-through;
+	filter: invert(0.25);
 }
 
 .ExpressionInput select {
-  border-bottom-right-radius: 0 !important;
-  border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	border-top-right-radius: 0 !important;
 }
 
 .ExpressionInput button {
-  border-bottom-left-radius: 0 !important;
-  border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	border-top-left-radius: 0 !important;
 }
 
 @media screen and (max-width: 450px) {
-  .ExpressionInput .control {
-    flex-flow: column;
-  }
+	.ExpressionInput .control {
+		flex-flow: column;
+	}
 
-  .ExpressionInput select {
-    width: 100%;
-  }
+	.ExpressionInput select {
+		width: 100%;
+	}
 
-  .ExpressionInput button,
-  .ExpressionInput select,
-  .ExpressionInput input {
-    border-radius: 0 !important;
-  }
+	.ExpressionInput button,
+	.ExpressionInput select,
+	.ExpressionInput input {
+		border-radius: 0 !important;
+	}
 }

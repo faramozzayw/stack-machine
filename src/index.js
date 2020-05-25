@@ -10,13 +10,15 @@ import * as serviceWorker from "./serviceWorker";
 
 import { StoreContext } from "storeon/react";
 
+import { store } from "./store";
+
 ReactDOM.render(
-  <StoreContext.Provider value={null}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </StoreContext.Provider>,
-  document.getElementById("root")
+	<StoreContext.Provider value={store}>
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>
+	</StoreContext.Provider>,
+	document.getElementById("root"),
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -4,13 +4,19 @@ import { Title } from "bloomer";
 
 import { Stack } from "./..";
 
+import { useStoreon } from "storeon/react";
+
 const InputView = () => {
-	const stack = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+	const { instructionsList } = useStoreon("instructionsList");
+
+	const instructions = instructionsList.map(
+		({ name, arg }) => name + (arg === null ? "" : ` ${arg}`),
+	);
 
 	return (
 		<>
 			<Title tag="h3">Input View</Title>
-			<Stack data={stack} />
+			<Stack data={instructions} />
 		</>
 	);
 };

@@ -5,10 +5,12 @@
 	--stack-solid-border: var(--stack-border) solid var(--stack-border-color);
 	--stack-dashed-border: var(--stack-border) dashed var(--stack-border-color);
 
+	--stack-item-width: 15rem;
+
 	display: flex;
 	flex-flow: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 
 	user-select: none;
 
@@ -17,10 +19,11 @@
 
 .stack ul {
 	overflow-y: auto;
+	width: calc(var(--stack-item-width) + 5rem);
 }
 
 .stack .stack-item {
-	width: 15rem;
+	width: var(--stack-item-width);
 	padding: 0.45vmin 1.125vmin;
 	margin: 0 1vw;
 
@@ -43,7 +46,7 @@
 	position: relative;
 }
 
-.stack .stack-item:first-child::after {
+.stack.display-top .stack-item:first-child:not(.null)::after {
 	color: #49ac25;
 	content: "<-- top";
 	right: 1rem;
@@ -55,6 +58,10 @@
 }
 
 .stack .stack-item:last-child {
+	border-bottom: var(--stack-solid-border);
+}
+
+.stack .stack-item.null:last-child {
 	border-bottom: var(--stack-solid-border);
 	background-color: brown;
 }

@@ -1,5 +1,11 @@
 import React from "react";
 
-const StackCell = ({ children }) => <li className="stack-item">{children}</li>;
+const StackCell = ({ children, otherProps }) => (
+	<li className="stack-item" {...otherProps}>
+		{children}
+	</li>
+);
 
-export default StackCell;
+const StackCellNull = () => <li className="stack-item null">null</li>;
+
+export { StackCell, StackCellNull };

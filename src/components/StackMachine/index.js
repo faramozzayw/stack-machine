@@ -10,7 +10,7 @@ const StackMachine = () => {
 	return (
 		<>
 			<Title tag="h3">Stack machine</Title>
-			<Stack data={stack} />
+			<Stack displayTop data={stack} />
 		</>
 	);
 };

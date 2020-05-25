@@ -2,25 +2,25 @@ import React from "react";
 
 import "./Stack.css";
 
-import StackCell from "./StackCell";
+import { StackCell, StackCellNull } from "./StackCell";
 
-const Stack = ({ data }) => {
-  if (!data) return null;
+const Stack = ({ data, displayTop = false, displayNull = true }) => {
+	if (!data) return null;
 
-  const list = [...data].reverse().map((value, i) => {
-    const key = `${value}_${i}`;
+	const list = [...data].reverse().map((value, i) => {
+		const key = `${value}_${i}`;
 
-    return <StackCell key={key}>{value}</StackCell>;
-  });
+		return <StackCell key={key}>{value}</StackCell>;
+	});
 
-  return (
-    <article className="stack">
-      <ul>
-        {list}
-        <StackCell>null</StackCell>
-      </ul>
-    </article>
-  );
+	return (
+		<article className={`stack ${displayTop ? "display-top" : ""}`}>
+			<ul>
+				{list}
+				{displayNull && <StackCellNull />}
+			</ul>
+		</article>
+	);
 };
 
 export default Stack;

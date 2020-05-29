@@ -1,5 +1,8 @@
 import { range } from "./utils";
 
+
+const compileError = "Compiler goes brrr...";
+
 export const pop = from => n => {
 	let arr = [];
 
@@ -13,6 +16,7 @@ export const pop = from => n => {
 export const compile = instructions => {
 	let computeStack = [];
 	let viewStack = [];
+	let error = null;
 
 	const push = value => {
 		computeStack.push(value);
@@ -46,11 +50,15 @@ export const compile = instructions => {
 				push(a / b);
 				break;
 			}
+			case "pop":
+				computeStack.pop();
+				viewStack.pop();
+				break;
 			default:
-				console.error("Compiler goes brrr...");
+				error = "Compiler goes brrr...";
 				break;
 		}
 	}
 
-	return [viewStack, computeStack];
+	return [viewStack, computeStack, error];
 };

@@ -25,4 +25,9 @@ operations.set("divide", {
 	arg: false,
 });
 
+operations.set("pop", {
+	text: "pop",
+	arg: false,
+});
+
 export { operations };

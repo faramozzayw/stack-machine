@@ -14,7 +14,6 @@ export const pop = from => n => {
 };
 
 export const compile = instructions => {
-	let computeStack = [];
 	let viewStack = [];
 	let error = null;
 
@@ -23,12 +22,13 @@ export const compile = instructions => {
 			value,
 			active: true,
 		};
-		computeStack.push(pushedValue);
 		viewStack.push(pushedValue);
 	};
 	
 	const pop = n => {
-		if(computeStack.length < n) {
+		const activeElemsCount = viewStack.filter(({ active }) => active).length;
+		
+		if(activeElemsCount < n) {
 			throw Error("Stack too small for this operations");
 		}
 	
@@ -39,12 +39,9 @@ export const compile = instructions => {
 			
 			if(elem.active) {
 				elem.active = false;
+				arr.push(elem);
 				j++;
 			}
-		}
-		
-		for (const _ of range(0, n)) {
-			arr.push(computeStack.pop());
 		}
 
 		return arr;
@@ -57,7 +54,6 @@ export const compile = instructions => {
 				push(instruct.arg);
 				break;
 			case "pop":
-				computeStack.pop();
 				viewStack.pop();
 				break;
 			case "add": {
@@ -82,12 +78,11 @@ export const compile = instructions => {
 			}
 			default:
 				throw compileError;
-				break;
 		}
 	}
 	} catch(error) {
 		alert(error.message);
 	}
 
-	return [viewStack, computeStack, error];
+	return [viewStack, null, error];
 };

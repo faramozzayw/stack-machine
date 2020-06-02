@@ -16,11 +16,15 @@ export const pop = from => n => {
 export const compile = instructions => {
 	let viewStack = [];
 	let error = null;
+	
+	let id = 0;
+	let history = new Set();
 
 	const push = value => {
 		const pushedValue = {
 			value,
 			active: true,
+			id: id++,
 		};
 		viewStack.push(pushedValue);
 	};
@@ -43,8 +47,24 @@ export const compile = instructions => {
 				j++;
 			}
 		}
+		
+		history.add([...arr]);
 
 		return arr;
+	};
+	
+	const restore = () => {
+		if(history.size <= 0) {
+			throw Error("Something bad wrong");
+		}
+		
+		const lastChange = [...history][history.size - 1];
+		
+		for(const step of lastChange) {
+			viewStack.find(({ id }) => id === step.id).active = true;
+		}
+		
+		history = new Set([...history].slice(0, -1));
 	};
 
 	try {
@@ -55,6 +75,7 @@ export const compile = instructions => {
 				break;
 			case "pop":
 				viewStack.pop();
+				restore();
 				break;
 			case "add": {
 				let [a, b] = pop(2);

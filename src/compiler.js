@@ -28,6 +28,10 @@ export const compile = instructions => {
 	};
 	
 	const pop = n => {
+		if(computeStack.length < n) {
+			throw Error("Stack too small for this operations");
+		}
+	
 		let arr = [];
 		
 		for(let i = viewStack.length - 1, j = 0; j < n && i >= 0; i--) {
@@ -46,6 +50,7 @@ export const compile = instructions => {
 		return arr;
 	};
 
+	try {
 	for (const instruct of instructions) {
 		switch (instruct.name) {
 			case "push":
@@ -76,9 +81,12 @@ export const compile = instructions => {
 				break;
 			}
 			default:
-				error = compileError;
+				throw compileError;
 				break;
 		}
+	}
+	} catch(error) {
+		alert(error.message);
 	}
 
 	return [viewStack, computeStack, error];

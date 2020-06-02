@@ -7,10 +7,10 @@ import { StackCell, StackCellNull } from "./StackCell";
 const Stack = ({ data, displayTop = false, displayNull = true }) => {
 	if (!data) return null;
 
-	const list = [...data].reverse().map((value, i) => {
+	const list = [...data].reverse().map(({ value, ...props }, i) => {
 		const key = `${value}_${i}`;
 
-		return <StackCell key={key}>{value}</StackCell>;
+		return <StackCell {...props} key={key}>{value}</StackCell>;
 	});
 
 	return (

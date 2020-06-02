@@ -1,7 +1,7 @@
 import React from "react";
 
-const StackCell = ({ children, ...otherProps }) => (
-	<li className="stack-item" {...otherProps}>
+const StackCell = ({ children, active, ...otherProps }) => (
+	<li className={`stack-item ${active ? "active" : ""}`} {...otherProps}>
 		{children}
 	</li>
 );

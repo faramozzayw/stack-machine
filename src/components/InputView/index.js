@@ -10,7 +10,10 @@ const InputView = () => {
 	const { instructionsList } = useStoreon("instructionsList");
 
 	const instructions = instructionsList.map(
-		({ name, arg }) => name + (arg === null ? "" : ` ${arg}`),
+		({ name, arg }) => ({
+			value: name + (arg === null ? "" : ` ${arg}`),
+			active: true,
+		}),
 	);
 
 	return (

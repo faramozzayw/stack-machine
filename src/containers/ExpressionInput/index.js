@@ -49,6 +49,7 @@ const ExpressionInput = () => {
 			dispatch(addInstruction, {
 				name: currentOperation,
 				arg: hasArg ? Number(arg) : null,
+				active: true,
 			});
 
 			console.log("Commit!");

@@ -19,43 +19,64 @@ export const compile = instructions => {
 	let error = null;
 
 	const push = value => {
-		computeStack.push(value);
-		viewStack.push(value);
+		const pushedValue = {
+			value,
+			active: true,
+		};
+		computeStack.push(pushedValue);
+		viewStack.push(pushedValue);
+	};
+	
+	const pop = n => {
+		let arr = [];
+		
+		for(let i = viewStack.length - 1, j = 0; j < n && i >= 0; i--) {
+			let elem = viewStack[i];
+			
+			if(elem.active) {
+				elem.active = false;
+				j++;
+			}
+		}
+		
+		for (const _ of range(0, n)) {
+			arr.push(computeStack.pop());
+		}
+
+		return arr;
 	};
 
-	const popComputeStack = pop(computeStack);
-
-	for (let instruct of instructions) {
+	for (const instruct of instructions) {
 		switch (instruct.name) {
 			case "push":
 				push(instruct.arg);
 				break;
-			case "add": {
-				let [a, b] = popComputeStack(2);
-				push(a + b);
-				break;
-			}
-			case "subtract": {
-				let [a, b] = popComputeStack(2);
-				push(a - b);
-				break;
-			}
-			case "multiply": {
-				let [a, b] = popComputeStack(2);
-				push(a * b);
-				break;
-			}
-			case "divide": {
-				let [a, b] = popComputeStack(2);
-				push(a / b);
-				break;
-			}
 			case "pop":
 				computeStack.pop();
 				viewStack.pop();
 				break;
+			case "add": {
+				let [a, b] = pop(2);
+				push(a?.value + b?.value);
+				break;
+			}
+			case "subtract": {
+				let [a, b] = pop(2);
+				push(a?.value - b?.value);
+				break;
+			}
+			case "multiply": {
+				let [a, b] = pop(2);
+				push(a?.value * b?.value);
+				break;
+			}
+			case "divide": {
+				let [a, b] = pop(2);
+				push(a?.value / b?.value);
+				break;
+			}
 			default:
-				error = "Compiler goes brrr...";
+				error = compileError;
 				break;
 		}
 	}

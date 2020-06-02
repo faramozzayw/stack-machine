@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Title } from "bloomer";
 
@@ -9,8 +9,14 @@ import { Stack } from "./..";
 import { compile } from "./../../compiler";
 
 const StackMachine = () => {
+	const [viewStack, updateView] = useState([]);
 	const { instructionsList } = useStoreon("instructionsList");
-	const [viewStack, _] = compile(instructionsList);
+	
+
+	useEffect(() => {
+		const [newViewStack, _] = compile(instructionsList);
+		updateView(newViewStack)
+	}, [instructionsList]);
 
 	return (
 		<>

@@ -46,6 +46,10 @@
 	position: relative;
 }
 
+.stack .stack-item:not(.active) {
+	filter: blur(1px);
+}
+
 .stack.display-top .stack-item:first-child:not(.null)::after {
 	color: #49ac25;
 	content: "<-- top";
@@ -64,4 +68,5 @@
 .stack .stack-item.null:last-child {
 	border-bottom: var(--stack-solid-border);
 	background-color: brown;
+	filter: none;
 }

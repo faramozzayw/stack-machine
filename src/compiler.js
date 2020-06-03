@@ -1,18 +1,5 @@
 import { range } from "./utils";
 
-
-const compileError = "Compiler goes brrr...";
-
-export const pop = from => n => {
-	let arr = [];
-
-	for (const _ of range(0, n)) {
-		arr.push(from.pop());
-	}
-
-	return arr;
-};
-
 export const compile = instructions => {
 	let viewStack = [];
 	let error = null;
@@ -21,16 +8,16 @@ export const compile = instructions => {
 	let history = new Set();
 
 	const push = value => {
-		const pushedValue = {
+		viewStack.push({
 			value,
 			active: true,
 			id: id++,
-		};
-		viewStack.push(pushedValue);
+		});
 	};
 	
 	const pop = n => {
-		const activeElemsCount = viewStack.filter(({ active }) => active).length;
+		const activeElemsCount = viewStac.filter(({ active }) => active)
+			.length;
 		
 		if(activeElemsCount < n) {
 			throw Error("Stack too small for this operations");
@@ -61,7 +48,9 @@ export const compile = instructions => {
 		const lastChange = [...history][history.size - 1];
 		
 		for(const step of lastChange) {
-			viewStack.find(({ id }) => id === step.id).active = true;
+			viewStack
+				.find(({ id }) => id === step.id)
+				.active = true;
 		}
 		
 		history = new Set([...history].slice(0, -1));
@@ -98,7 +87,7 @@ export const compile = instructions => {
 				break;
 			}
 			default:
-				throw compileError;
+				throw Error("Compiler goes brrr..." );
 		}
 	}
 	} catch(error) {

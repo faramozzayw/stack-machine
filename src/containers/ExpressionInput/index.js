@@ -29,6 +29,7 @@ const ExpressionInput = () => {
 	const [hasArg, updateArgStatus] = useState(() => {
 		return checkArgCurrOperation(currentOperation);
 	});
+	const [canCommit, upCanCommit] = useState(true);
 
 	const { dispatch } = useStoreon();
 
@@ -36,10 +37,15 @@ const ExpressionInput = () => {
 		updateArgStatus(checkArgCurrOperation(currentOperation));
 	}, [currentOperation]);
 
+	useEffect(() => {
+		upCanCommit(hasArg);
+	}, [hasArg])
+
 	const handleInput = event => {
 		const { value } = event.target;
-
-		updateArg(value);
+		
+		upCanCommit(!Number.isNaN(Number(value)))
+		updateArg(value.trim());
 	};
 
 	const onCommit = e => {
@@ -51,8 +57,6 @@ const ExpressionInput = () => {
 				arg: hasArg ? Number(arg) : null,
 				active: true,
 			});
-
-			console.log("Commit!");
 		}
 	};
 
@@ -79,7 +83,12 @@ const ExpressionInput = () => {
 							onChange={handleInput}
 							required
 						/>
-						<Button type="submit" isColor="success" onClick={onCommit}>
+						<Button
+							type="submit"
+							isColor={`${canCommit ? "success" : "warning"}`}
+							onClick={onCommit}
+							disabled={!canCommit}
+						>
 							Commit!
 						</Button>
 					</Control>

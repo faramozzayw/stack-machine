@@ -16,7 +16,7 @@ export const compile = instructions => {
 	};
 	
 	const pop = n => {
-		const activeElemsCount = viewStac.filter(({ active }) => active)
+		const activeElemsCount = viewStack.filter(({ active }) => active)
 			.length;
 		
 		if(activeElemsCount < n) {

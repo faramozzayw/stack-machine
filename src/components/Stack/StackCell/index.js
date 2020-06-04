@@ -2,7 +2,7 @@ import React from "react";
 
 const StackCell = ({ children, active, ...otherProps }) => (
 	<li className={`stack-item ${active ? "active" : ""}`} {...otherProps}>
-		{children}
+		<span>{children}</span>
 	</li>
 );
 

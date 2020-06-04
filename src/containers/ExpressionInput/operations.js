@@ -30,4 +30,9 @@ operations.set("pop", {
 	arg: false,
 });
 
+operations.set("force pop", {
+	text: "force pop",
+	arg: false, 
+});
+
 export { operations };

@@ -39,9 +39,9 @@ const ExpressionInput = () => {
 	}, [currentOperation]);
 	
 	useEffect(() => {
-		const argumentIsCorrect = !Number.isNaN(Number(arg));
-		
 		if(hasArg) {
+			const argumentIsCorrect = !Number.isNaN(Number(arg));
+			
 			setCanCommit(argumentIsCorrect);
 		} else {
 			setCanCommit(true);
@@ -69,7 +69,7 @@ const ExpressionInput = () => {
 			});
 		}
 	};
-	const color = canCommit ? "success" : "warning";
+	const color = canCommit ? "success" : "danger";
 	return (
 		<Container className="ExpressionInput">
 			<Title>Expression Input</Title>

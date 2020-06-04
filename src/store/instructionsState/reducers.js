@@ -7,13 +7,18 @@ const expression = store => {
 		...initialState,
 	}));
 
-	store.on(addInstruction, (state, instruction) => ({
-		...state,
-		instructionsList: state.instructionsList.concat(instruction),
-	}));
-
-	store.on(addInstruction, state => {
-		global.state = state;
+	store.on(addInstruction, (state, instruction) => {
+		if(instruction.name === "force pop") {
+			return {
+				...state,
+				instructionsList: state.instructionsList.slice(0, -1),
+			};
+		} else {
+			return {
+				...state,
+				instructionsList: state.instructionsList.concat(instruction),
+			};
+		}
 	});
 
 	store.on(clearInstructions, () => ({

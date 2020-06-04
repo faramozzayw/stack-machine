@@ -46,8 +46,8 @@
 	position: relative;
 }
 
-.stack .stack-item:not(.active) {
-	filter: blur(1px);
+.stack .stack-item:not(.active) * {
+	filter: blur(2px);
 }
 
 .stack.display-top .stack-item:first-child:not(.null)::after {

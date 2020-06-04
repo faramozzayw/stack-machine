@@ -7,6 +7,7 @@ import {
 	Button,
 	Input,
 	Container,
+	Help,
 } from "bloomer";
 
 import { useStoreon } from "storeon/react";
@@ -22,30 +23,39 @@ import "./ExpressionInput.css";
 const checkArgCurrOperation = checkArg(operations);
 
 const ExpressionInput = () => {
-	const [currentOperation, updateOperaion] = useState(() => {
+	const [currentOperation, setOperaion] = useState(() => {
 		return operations.values().next().value.text;
 	});
-	const [arg, updateArg] = useState("");
-	const [hasArg, updateArgStatus] = useState(() => {
+	const [arg, setArg] = useState("");
+	const [hasArg, setArgStatus] = useState(() => {
 		return checkArgCurrOperation(currentOperation);
 	});
-	const [canCommit, upCanCommit] = useState(true);
+	const [canCommit, setCanCommit] = useState(true);
 
 	const { dispatch } = useStoreon();
 
 	useEffect(() => {
-		updateArgStatus(checkArgCurrOperation(currentOperation));
+		setArgStatus(checkArgCurrOperation(currentOperation));
 	}, [currentOperation]);
-
+	
 	useEffect(() => {
-		upCanCommit(hasArg);
-	}, [hasArg])
+		const argumentIsCorrect = !Number.isNaN(Number(arg));
+		
+		if(hasArg) {
+			setCanCommit(argumentIsCorrect);
+		} else {
+			setCanCommit(true);
+		}
+	}, [hasArg, arg]);
+
+	const handleSelect = event => {
+		setOperaion(event.target.value);
+	}
 
 	const handleInput = event => {
 		const { value } = event.target;
 		
-		upCanCommit(!Number.isNaN(Number(value)))
-		updateArg(value.trim());
+		setArg(value.trim());
 	};
 
 	const onCommit = e => {
@@ -59,7 +69,7 @@ const ExpressionInput = () => {
 			});
 		}
 	};
-
+	const color = canCommit ? "success" : "warning";
 	return (
 		<Container className="ExpressionInput">
 			<Title>Expression Input</Title>
@@ -68,7 +78,7 @@ const ExpressionInput = () => {
 					<Control>
 						<Select
 							value={currentOperation}
-							onChange={event => updateOperaion(event.target.value)}
+							onChange={handleSelect}
 						>
 							{[...operations.values()].map(({ text }) => (
 								<option value={text} key={text}>
@@ -85,13 +95,22 @@ const ExpressionInput = () => {
 						/>
 						<Button
 							type="submit"
-							isColor={`${canCommit ? "success" : "warning"}`}
+							isColor={color}
 							onClick={onCommit}
 							disabled={!canCommit}
 						>
 							Commit!
 						</Button>
 					</Control>
+					<Help
+						isColor={color}
+					>
+						{
+							canCommit ? 
+							"Everything is awesome! 🎉":
+							"Something bad wrong ☹️"
+						}
+					</Help>
 				</Field>
 			</form>
 		</Container>

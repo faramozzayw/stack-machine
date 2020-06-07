@@ -1,5 +1,11 @@
 .MainTitle {
-  padding: 1rem;
-  text-decoration: underline;
-  text-underline-offset: 15px;
+  margin: 1rem;
+  padding: 0 1rem;
+  border-bottom: .1rem dashed gold;
+  
+  font-family: "Roboto", monospace;
+  max-width: max-content;
+  letter-spacing: 5px;
+  
+  color: #3ab4c7 !important;
 }

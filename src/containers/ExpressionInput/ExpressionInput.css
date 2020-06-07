@@ -34,7 +34,7 @@
 }
 
 .ExpressionInput button {
-	border-bottom-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !import0 !;
 	border-top-left-radius: 0 !important;
 }
 
@@ -47,7 +47,10 @@
 		width: 100%;
 	}
 
-	.ExpressionInput button,
+	.ExpressionInput button {
+		border-radius: 0 0 15px 15px !important ;
+	}
+	
 	.ExpressionInput select,
 	.ExpressionInput input {
 		border-radius: 0 !important;

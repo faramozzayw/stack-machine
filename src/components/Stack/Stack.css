@@ -26,6 +26,8 @@
 	width: var(--stack-item-width);
 	padding: 0.45vmin 1.125vmin;
 	margin: 0 1vw;
+	display: flex;
+	justify-content: center;
 
 	text-align: center;
 
@@ -46,15 +48,25 @@
 	position: relative;
 }
 
-.stack .stack-item:not(.active) * {
+.stack .stack-item .stack-content {
+	flex-grow: 1;
+}
+
+.stack .stack-item:not(.active) .stack-content {
 	filter: blur(2px);
 }
 
+.stack .stack-item:not(.active) .stack-content:hover {
+	filter: none;
+}
+
 .stack.display-top .stack-item:first-child:not(.null)::after {
-	color: #49ac25;
+	color: /*#49ac25*/ darkgoldenrod;
 	content: "<-- top";
-	right: 1rem;
+	padding-left: calc(100% + 5rem);
 	position: absolute;
+	white-space: nowrap;
+	z-index: 5;
 }
 
 .stack .stack-item:not(:last-child) {

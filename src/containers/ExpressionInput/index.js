@@ -79,6 +79,7 @@ const ExpressionInput = () => {
 						<Select
 							value={currentOperation}
 							onChange={handleSelect}
+							
 						>
 							{[...operations.values()].map(({ text }) => (
 								<option value={text} key={text}>

@@ -34,7 +34,7 @@
 }
 
 .ExpressionInput button {
-	border-bottom-left-radius: 0 !import0 !;
+	border-bottom-left-radius: 0 !important;
 	border-top-left-radius: 0 !important;
 }
 

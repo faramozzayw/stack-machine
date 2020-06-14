@@ -1,5 +1,3 @@
-// import { range } from "./utils";
-
 export const compile = instructions => {
 	let viewStack = [];
 	let error = null;
@@ -16,7 +14,8 @@ export const compile = instructions => {
 	};
 	
 	const pop = n => {
-		const activeElemsCount = viewStack.filter(({ active }) => active)
+		const activeElemsCount = viewStack
+			.filter(({ active }) => active)
 			.length;
 		
 		if(activeElemsCount < n) {
@@ -57,39 +56,39 @@ export const compile = instructions => {
 	};
 
 	try {
-	for (const instruct of instructions) {
-		switch (instruct.name) {
-			case "push":
-				push(instruct.arg);
-				break;
-			case "pop":
-				viewStack.pop();
-				restore();
-				break;
-			case "add": {
-				let [a, b] = pop(2);
-				push(a?.value + b?.value);
-				break;
+		for (const instruct of instructions) {
+			switch (instruct.name) {
+				case "push":
+					push(instruct.arg);
+					break;
+				case "pop":
+					viewStack.pop();
+					restore();
+					break;
+				case "add": {
+					let [a, b] = pop(2);
+					push(a?.value + b?.value);
+					break;
+				}
+				case "subtract": {
+					let [a, b] = pop(2);
+					push(a?.value - b?.value);
+					break;
+				}
+				case "multiply": {
+					let [a, b] = pop(2);
+					push(a?.value * b?.value);
+					break;
+				}
+				case "divide": {
+					let [a, b] = pop(2);
+					push(a?.value / b?.value);
+					break;
+				}
+				default:
+					throw Error("Compiler goes brrr..." );
 			}
-			case "subtract": {
-				let [a, b] = pop(2);
-				push(a?.value - b?.value);
-				break;
-			}
-			case "multiply": {
-				let [a, b] = pop(2);
-				push(a?.value * b?.value);
-				break;
-			}
-			case "divide": {
-				let [a, b] = pop(2);
-				push(a?.value / b?.value);
-				break;
-			}
-			default:
-				throw Error("Compiler goes brrr..." );
 		}
-	}
 	} catch(error) {
 		alert(error.message);
 	}

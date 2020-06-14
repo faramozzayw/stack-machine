@@ -63,7 +63,7 @@ const ExpressionInput = () => {
 			e.preventDefault();
 
 			dispatch(addInstruction, {
-				name: currentOperation,
+				type: currentOperation,
 				arg: hasArg ? Number(arg) : null,
 				active: true,
 			});

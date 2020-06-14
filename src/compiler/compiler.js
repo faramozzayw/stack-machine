@@ -5,12 +5,15 @@ export const compile = instructions => {
 	let id = 0;
 	let history = new Set();
 
-	const push = value => {
-		viewStack.push({
+	const push = (value, type = "push") => {
+		const newValue = {
 			value,
+			type,
 			active: true,
 			id: id++,
-		});
+		};
+
+		viewStack.push(newValue);
 	};
 	
 	const pop = n => {
@@ -19,7 +22,7 @@ export const compile = instructions => {
 			.length;
 		
 		if(activeElemsCount < n) {
-			throw Error("Stack too small for this operations");
+			throw Error(`Stack too small for this operations, try option "force pop"`);
 		}
 	
 		let arr = [];
@@ -41,7 +44,7 @@ export const compile = instructions => {
 	
 	const restore = () => {
 		if(history.size <= 0) {
-			throw Error("Something bad wrong");
+			throw Error(`Something bad wrong, try option "force pop"`);
 		}
 		
 		const lastChange = [...history][history.size - 1];
@@ -57,7 +60,7 @@ export const compile = instructions => {
 
 	try {
 		for (const instruct of instructions) {
-			switch (instruct.name) {
+			switch (instruct.type) {
 				case "push":
 					push(instruct.arg);
 					break;
@@ -86,12 +89,12 @@ export const compile = instructions => {
 					break;
 				}
 				default:
-					throw Error("Compiler goes brrr..." );
+					throw Error(`Compiler goes brrr..., try option "force pop"`);
 			}
 		}
 	} catch(error) {
-		alert(error.message);
+		return [viewStack, error.message]
 	}
 
-	return [viewStack, null, error];
+	return [viewStack, null];
 };

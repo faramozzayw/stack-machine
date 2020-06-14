@@ -8,7 +8,7 @@ const expression = store => {
 	}));
 
 	store.on(addInstruction, (state, instruction) => {
-		if(instruction.name === "force pop") {
+		if(instruction.type === "force pop") {
 			return {
 				...state,
 				instructionsList: state.instructionsList.slice(0, -1),
